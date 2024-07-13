@@ -8,15 +8,14 @@ Example Arguments for Anonymous Usenet Posting:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -f "{rand(14)} <{rand(14)}@{rand(5)}.{rand(3)}>" --message-id "{rand(32)}@{rand(8)}.{rand(3)}" --subject "{rand(32)}" --nzb-subject "{filename}" --obfuscate-articles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-> [!CAUTION]
-> Attention if you use these arguments you can never find again what you have uploaded without the NZB!
-
+---
 
 > [!IMPORTANT]  
-> [Stop Rar Upload Deutsch / German] https://github.com/Antidote2151/Nyuu-Obfuscation/wiki/Stop-RAR-Uploads-Deutsch---German
-> [Stop Rar Uploads English] https://github.com/animetosho/Nyuu/wiki/Stop-RAR-Uploads
+> [Stop Rar Uploads Deutsch / German](<https://github.com/Antidote2151/Nyuu-Obfuscation/wiki/Stop-RAR-Uploads-Deutsch---German>)
+> 
+> [Stop Rar Uploads English](<https://github.com/animetosho/Nyuu/wiki/Stop-RAR-Uploads>)
 
+---
 Nyuu
 ====
 
