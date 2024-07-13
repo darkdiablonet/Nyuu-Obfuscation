@@ -1,3 +1,17 @@
+A small variation of Nyuu was the article Obfuscate. Also removed the user agent.
+In my opinion, this gives you the greatest possible privacy when posting on Usenet.
+
+> [!CAUTION]
+> Attention if you use these arguments you can never find again what you have uploaded without the NZB!
+
+Example Arguments for Anonymous Usenet Posting:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-f "{rand(14)} <{rand(14)}@{rand(5)}.{rand(3)}>" --message-id "{rand(32)}@{rand(8)}.{rand(3)}" --subject "{rand(32)}" --nzb-subject "{filename}" --obfuscate-articles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> [!CAUTION]
+> Attention if you use these arguments you can never find again what you have uploaded without the NZB!
+
 Nyuu
 ====
 
