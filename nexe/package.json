@@ -1,6 +1,6 @@
 {
   "name": "nyuu-build",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Helper to build Nyuu binary",
   "license": "CC0-1.0",
   "author": "Anime Tosho",
@@ -9,8 +9,8 @@
     "node": ">=10"
   },
   "dependencies" : {
-    "nexe" : "4.0.0-beta.15",
+    "nexe" : "4.0.0-rc.6",
     "browserify" : "^17.0.0",
-    "yencode" : "~1.1.0"
+    "yencode" : "~1.2.1"
   }
 }
