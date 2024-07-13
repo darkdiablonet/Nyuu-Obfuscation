@@ -1,17 +1,15 @@
 name: Build release binary
 on:
   release:
-    types: [published]
-  #push:
-  #  tags:
-  #  - v*.*.*
+    types:
+      - created
 
 jobs:
   build-win32:
-    name: Build x86 Windows binary
-    runs-on: windows-2019
+    name: Build x64 Windows binary
+    runs-on: windows-2022
     env:
-      BUILD_ARCH: x86
+      BUILD_ARCH: x64
       BUILD_LOGLEVEL: verbose
     steps:
       - uses: ilammy/setup-nasm@v1
@@ -28,13 +26,11 @@ jobs:
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
       - run: move nexe\nyuu.exe nyuu.exe && 7z a -t7z -mx=9 nyuu.7z config-sample.json nyuu.exe
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - uses: shogo82148/actions-upload-release-asset@v1
         with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }} 
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./nyuu.7z
-          asset_name: nyuu-${{ steps.get_release.outputs.tag_name }}-win32.7z
+          asset_name: nyuu-${{ steps.get_release.outputs.tag_name }}-win64.7z
           asset_content_type: application/octet-stream
   
   build-linux:
@@ -50,11 +46,6 @@ jobs:
           arch: arm64
           xz_bcj: 
           name: aarch64
-        # disabled due to compiler crashing
-        #- target: armv7l-linux-musleabihf
-        #  arch: arm
-        #  xz_bcj: --arm
-        #  name: armhf
     name: Build ${{ matrix.name }} Linux binary
     runs-on: ubuntu-latest
     env:
@@ -91,11 +82,9 @@ jobs:
           CXX_host: c++
       - run: ${{ steps.musl.outputs.path }}/${{ matrix.target }}-strip nexe/nyuu
       - run: tar --group=nobody --owner=nobody -cf - -C nexe nyuu ../config-sample.json | xz -9e ${{ matrix.xz_bcj }} --lzma2 > nyuu.txz
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - uses: shogo82148/actions-upload-release-asset@v1
         with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }} 
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./nyuu.txz
           asset_name: nyuu-${{ steps.get_release.outputs.tag_name }}-linux-${{ matrix.name }}.tar.xz
           asset_content_type: application/octet-stream
@@ -121,11 +110,9 @@ jobs:
       - run: (cd nexe && node build)
       - run: strip nexe/nyuu
       - run: mv nexe/nyuu . && tar --uname '' --gname '' --options='compression-level=9' -Jcf nyuu.txz nyuu config-sample.json
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - uses: shogo82148/actions-upload-release-asset@v1
         with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }} 
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./nyuu.txz
           asset_name: nyuu-${{ steps.get_release.outputs.tag_name }}-macos-x64.tar.xz
           asset_content_type: application/octet-stream
