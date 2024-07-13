@@ -42,10 +42,6 @@ jobs:
           arch: x64
           xz_bcj: --x86
           name: amd64
-        - target: aarch64-linux-musl
-          arch: arm64
-          xz_bcj: 
-          name: aarch64
     name: Build ${{ matrix.name }} Linux binary
     runs-on: ubuntu-latest
     env:
@@ -87,32 +83,4 @@ jobs:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./nyuu.txz
           asset_name: nyuu-${{ steps.get_release.outputs.tag_name }}-linux-${{ matrix.name }}.tar.xz
-          asset_content_type: application/octet-stream
-
-  build-mac:
-    name: Build x64 MacOS binary
-    runs-on: macos-latest
-    env:
-      BUILD_ARCH: x64
-      BUILD_LOGLEVEL: verbose
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9' # workaround "cannot import name 'Mapping' from 'collections'" error
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.2.3
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - run: npm install --production
-      - run: (cd nexe && npm install --production)
-      - run: (cd nexe && node build)
-      - run: strip nexe/nyuu
-      - run: mv nexe/nyuu . && tar --uname '' --gname '' --options='compression-level=9' -Jcf nyuu.txz nyuu config-sample.json
-      - uses: shogo82148/actions-upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./nyuu.txz
-          asset_name: nyuu-${{ steps.get_release.outputs.tag_name }}-macos-x64.tar.xz
           asset_content_type: application/octet-stream
