@@ -12,6 +12,11 @@ Example Arguments for Anonymous Usenet Posting:
 > [!CAUTION]
 > Attention if you use these arguments you can never find again what you have uploaded without the NZB!
 
+
+> [!IMPORTANT]  
+> [Stop Rar Upload Deutsch / German] https://github.com/Antidote2151/Nyuu-Obfuscation/wiki/Stop-RAR-Uploads-Deutsch---German
+> [Stop Rar Uploads English] https://github.com/animetosho/Nyuu/wiki/Stop-RAR-Uploads
+
 Nyuu
 ====
 
