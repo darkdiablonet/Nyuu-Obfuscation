@@ -154,7 +154,7 @@ Article/Post Options:
                              submitted. (flag option)
        --obfuscate-articles  Randomize yenc header filename for every article
                              with a randomized 32-62 hex string and randomly 
-                             generates a date from the last 24 hours. (flag option)
+                             generates a date from the last 6 hours. (flag option)
   -H,  --header              Specify an NNTP header in either of these forms:
                                  -H "MyHeader: MyValue"
                                  -H MyHeader=MyValue

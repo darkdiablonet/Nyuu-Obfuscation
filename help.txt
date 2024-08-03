@@ -34,7 +34,7 @@ Article/Post Options:
                              Defaults to alt.binaries.test
   --obfuscate-articles       Randomize yenc header filename for every article
                              with a randomized 32-62 hex string and randomly 
-                             generates a date from the last 24 hours. (flag option)
+                             generates a date from the last 6 hours. (flag option)
 
 Post Check Options:
 
