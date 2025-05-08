@@ -52,14 +52,14 @@ jobs:
 
   build-dev-linux-arm64:
     name: Build ARM64 Linux binary
-    runs-on: ubuntu-24.04-arm64
     strategy:
+      fail-fast: false
       matrix:
         include:
           - arch: arm64
             name: aarch64
             nodever: 12.22.12
-            xz_bcj:
+    runs-on: ubuntu-24.04-arm64
     env:
       BUILD_ARCH: ${{ matrix.arch }}
       BUILD_LOGLEVEL: verbose
@@ -75,7 +75,7 @@ jobs:
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build --targets=linux-arm64-${{ matrix.nodever }})
       - run: strip nexe/nyuu
-      - run: tar --group=nobody --owner=nobody -cf - -C nexe nyuu ../config-sample.json | xz -9e ${{ matrix.xz_bcj }} --lzma2 > nyuu.txz
+      - run: tar --group=nobody --owner=nobody -cf - -C nexe nyuu ../config-sample.json | xz -9e --lzma2 > nyuu.txz
       - uses: actions/upload-artifact@v4
         with:
           path: ./nyuu.txz
