@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-dev-macos-x64:
+  build-dev-macos:
     name: Build macOS x64 binary
-    runs-on: macos-13  # oder macos-13
+    runs-on: macos-latest
     env:
       BUILD_ARCH: x64
       BUILD_LOGLEVEL: verbose
@@ -14,9 +14,6 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9' # workaround "cannot import name 'Mapping' from 'collections'" error
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '12.22.12'
       - run: npm install --production
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
