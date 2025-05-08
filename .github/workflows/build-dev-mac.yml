@@ -26,7 +26,7 @@ jobs:
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
       - run: tar --owner=$(id -un) --group=staff -cf - -C nexe nyuu ../config-sample.json | xz -9e > nyuu.txz
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ./nyuu.txz
           name: nyuu-${{ github.ref_name }}-mac-arm64.tar.xz
@@ -55,7 +55,7 @@ jobs:
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
       - run: tar --owner=$(id -un) --group=staff -cf - -C nexe nyuu ../config-sample.json | xz -9e > nyuu.txz
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ./nyuu.txz
           name: nyuu-${{ github.ref_name }}-mac-x64.tar.xz
