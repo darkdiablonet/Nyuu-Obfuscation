@@ -12,10 +12,12 @@ jobs:
             arch: x64
             xz_bcj: --x86
             name: amd64
+            nodever: 12.22.12
           - target: aarch64-linux-musl
             arch: arm64
             xz_bcj:
             name: aarch64
+            nodever: 12.22.12
     name: Build ${{ matrix.name }} Linux binary
     runs-on: ubuntu-latest
     env:
@@ -39,7 +41,7 @@ jobs:
         if: ${{ matrix.arch == 'arm' }}
       - run: npm install --production
       - run: (cd nexe && npm install --production)
-      - run: (cd nexe && node build)
+      - run: (cd nexe && node build --targets=linux-${{ matrix.arch }}-${{ matrix.nodever }})
         env:
           CC: ${{ steps.musl.outputs.path }}/${{ matrix.target }}-cc
           CXX: ${{ steps.musl.outputs.path }}/${{ matrix.target }}-c++
