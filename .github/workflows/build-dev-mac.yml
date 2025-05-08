@@ -17,11 +17,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.2.3
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
       - run: npm install --production
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
@@ -46,11 +41,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.2.3
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
       - run: npm install --production
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
