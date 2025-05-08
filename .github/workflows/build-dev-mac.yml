@@ -3,9 +3,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-dev-macos:
-    name: Build macOS x64 binary
+  build-dev-macos-arm64:
+    name: Build macOS ARM64 binary
     runs-on: macos-latest
+    env:
+      BUILD_ARCH: arm64
+      BUILD_LOGLEVEL: verbose
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' # workaround "cannot import name 'Mapping' from 'collections'" error
+      - run: npm install --production
+      - run: (cd nexe && npm install --production)
+      - run: (cd nexe && node build)
+        env:
+          CC: cc
+          CXX: c++
+          CXXFLAGS: "-Wno-enum-constexpr-conversion -Wno-error"
+      - run: tar --owner=$(id -un) --group=staff -cf - -C nexe nyuu ../config-sample.json | xz -9e > nyuu.txz
+      - uses: actions/upload-artifact@v4
+        with:
+          path: ./nyuu.txz
+          name: nyuu-${{ github.ref_name }}-mac-arm64.tar.xz
+          retention-days: 5
+
+  build-dev-macos-x64:
+    name: Build macOS x64 binary
+    runs-on: macos-13  # oder macos-13
     env:
       BUILD_ARCH: x64
       BUILD_LOGLEVEL: verbose
