@@ -16,7 +16,7 @@ jobs:
           python-version: '3.9' # workaround "cannot import name 'Mapping' from 'collections'" error
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '12.22.12'
       - run: npm install --production
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
@@ -40,7 +40,7 @@ jobs:
           python-version: '3.9' # workaround "cannot import name 'Mapping' from 'collections'" error
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '12.22.12'
       - run: npm install --production
       - run: (cd nexe && npm install --production)
       - run: (cd nexe && node build)
